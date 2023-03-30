@@ -21,10 +21,10 @@ const userController = new UserController(userUseCase)
 const exerciseController = new ExerciseController(exerciseUseCase)
 
 // Register routes
-route.post(`/user`, userController.insertController)
-route.get(`/user`, userController.getController)
+route.post(`/user`, userController.insert)
+route.get(`/user`, userController.get)
 
-route.post(`/exercise`, exerciseController.insertController)
-route.get(`/exercise`, exerciseController.getController)
+route.post(`/exercise`, exerciseController.insert)
+route.get(`/exercise`, exerciseController.get)
 
 export default route

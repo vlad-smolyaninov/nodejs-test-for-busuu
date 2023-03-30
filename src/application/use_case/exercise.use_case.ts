@@ -2,6 +2,7 @@ import {IExerciseRepository} from '../../domain/exercise/exercise.Interface';
 import {ExerciseValue} from '../../domain/exercise/exercise.value';
 import {ValidationError} from "ajv";
 import {IUserRepository} from "../../domain/user/user.Interface";
+import {ExerciseEntity} from "../../domain/exercise/exercise.entity";
 
 export const MAX_EXERCISES_PER_USER = 10
 
@@ -9,7 +10,7 @@ export class ExerciseUseCase {
     constructor(private readonly exerciseRepository: IExerciseRepository, private readonly userRepository: IUserRepository) {
     }
 
-    public createExercise = async ({user_id, content}: any) => {
+    public createExercise = async ({user_id, content}: ExerciseEntity) => {
 
         const user = await this.userRepository.findUserById(user_id);
 

@@ -1,12 +1,13 @@
 import {IUserRepository} from '../../domain/user/user.Interface';
 import {UserValue} from '../../domain/user/user.value';
 import {ValidationError} from "ajv";
+import {UserEntity} from "../../domain/user/user.entity";
 
 export class UserUseCase {
     constructor(private readonly userRepository: IUserRepository) {
     }
 
-    public registerUser = async ({name, email}: any) => {
+    public registerUser = async ({name, email}: UserEntity) => {
         const isEmailExists = await this.getCountUserByEmail(email)
         if (isEmailExists) {
             const error = new ValidationError([])

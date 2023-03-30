@@ -3,12 +3,13 @@ import {IExerciseRepository} from "../../domain/exercise/exercise.Interface";
 import ExerciseModel from "../models/exercise.schema";
 
 export class ExerciseRepository implements IExerciseRepository {
-    async createExercise(exerciseIn: ExerciseEntity): Promise<any> {
-        const exercise = await ExerciseModel.create(exerciseIn)
-        return exercise
+
+    async createExercise(exerciseData: ExerciseEntity): Promise<ExerciseEntity> {
+        const exercise  = await ExerciseModel.create(exerciseData)
+        return  exercise.toObject() as ExerciseEntity;
     }
 
-    async listExercise(): Promise<any> {
+    async listExercise() {
         const exercises = await ExerciseModel.aggregate([
             {
                 $lookup: {
@@ -34,7 +35,7 @@ export class ExerciseRepository implements IExerciseRepository {
         return exercises
     }
 
-    async countExercisesByUserId(user_id: string): Promise<any> {
+    async countExercisesByUserId(user_id: string) {
         const exercises = await ExerciseModel.count({user_id})
         return exercises
     }

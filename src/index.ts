@@ -16,5 +16,6 @@ const port = process.env.PORT || 8888;
 app.use(routes);
 app.use(globalErrorHandler)
 
-dbInit().then();
-app.listen(port, () => console.log(`APP, run on PORT: ${port}`));
+dbInit().then(() => {
+    app.listen(port, () => console.log(`APP, run on PORT: ${port}`));
+});

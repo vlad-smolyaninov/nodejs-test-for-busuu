@@ -3,22 +3,22 @@ import {IUserRepository} from "../../domain/user/user.Interface";
 import UserModel from "../models/user.schema";
 
 export class UserRepository implements IUserRepository {
-    async findUserById(_id: string): Promise<any> {
+    async findUserById(_id: string) {
         const user = await UserModel.findById(_id)
         return user
     }
 
-    async countUsersByEmail(email: string): Promise<any> {
-        const user = await UserModel.count({email})
-        return user
+    async countUsersByEmail(email: string) {
+        const userCount = await UserModel.count({email})
+        return userCount
     }
 
-    async registerUser(userEntity: UserEntity): Promise<any> {
+    async registerUser(userEntity: UserEntity) {
         const user = await UserModel.create(userEntity)
         return user
     }
 
-    async listUser(): Promise<any> {
+    async listUser() {
         const users = await UserModel.find()
         return users
     }

@@ -1,4 +1,5 @@
 import {model, Schema} from "mongoose";
+import {UserEntity} from "../../domain/user/user.entity";
 
 const UserSchema = new Schema(
     {
@@ -16,6 +17,6 @@ const UserSchema = new Schema(
     }
 );
 
-const UserModel = model("users", UserSchema)
+const UserModel = model<UserEntity>("users", UserSchema)
 
 export default UserModel

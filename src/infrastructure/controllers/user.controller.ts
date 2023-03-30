@@ -6,11 +6,11 @@ import {ValidationError} from "ajv";
 export class UserController {
 
     constructor(private userUseCase: UserUseCase) {
-        this.insertController = this.insertController.bind(this)
-        this.getController = this.getController.bind(this)
+        this.insert = this.insert.bind(this)
+        this.get = this.get.bind(this)
     }
 
-    public async getController({query}: Request, res: Response, next: NextFunction) {
+    public async get({query}: Request, res: Response, next: NextFunction) {
         try {
             const {uuid = ''} = query;
             if (uuid) {
@@ -24,7 +24,7 @@ export class UserController {
         }
     }
 
-    public async insertController({body}: Request, res: Response, next: NextFunction) {
+    public async insert({body}: Request, res: Response, next: NextFunction) {
         try {
             const valid = validateUser(body);
             if (!valid) {
